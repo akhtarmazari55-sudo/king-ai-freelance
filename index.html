@@ -3,56 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>King AI Freelance | Secure Studio</title>
+    <title>King AI Freelance | Integrated Studio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>body { font-family: 'Inter', sans-serif; }</style>
 </head>
 <body class="bg-slate-950 text-slate-100">
 
     <!-- Auth Screen -->
     <div id="authScreen" class="fixed inset-0 bg-slate-950 z-50 flex items-center justify-center p-6">
         <div class="max-w-md w-full bg-slate-900 p-8 rounded-3xl border border-slate-800 text-center">
-            <h2 class="text-2xl font-bold mb-6">King AI <span class="text-indigo-500">Secure Access</span></h2>
+            <h2 class="text-2xl font-bold mb-6">King AI <span class="text-indigo-500">Access</span></h2>
             <div id="phoneStep">
                 <input id="phoneInput" type="text" placeholder="+1234567890" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 mb-4 outline-none">
-                <button onclick="sendOTP()" class="w-full bg-indigo-600 py-3 rounded-xl hover:bg-indigo-500 transition">Send OTP</button>
+                <button onclick="document.getElementById('phoneStep').classList.add('hidden'); document.getElementById('otpStep').classList.remove('hidden');" class="w-full bg-indigo-600 py-3 rounded-xl hover:bg-indigo-500 transition">Send OTP</button>
             </div>
             <div id="otpStep" class="hidden">
                 <input id="otpInput" type="text" placeholder="6-digit code" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 mb-4 outline-none">
-                <button onclick="verifyOTP()" class="w-full bg-emerald-600 py-3 rounded-xl hover:bg-emerald-500 transition">Verify & Enter Studio</button>
+                <button onclick="document.getElementById('authScreen').classList.add('hidden'); document.getElementById('studioScreen').classList.remove('hidden');" class="w-full bg-emerald-600 py-3 rounded-xl hover:bg-emerald-500 transition">Verify & Start</button>
             </div>
         </div>
     </div>
 
-    <!-- Studio Screen -->
-    <div id="studioScreen" class="hidden min-h-screen">
-        <header class="border-b border-slate-800 p-6 flex justify-between items-center">
-            <h1 class="text-xl font-bold">King AI <span class="text-indigo-500">Studio</span></h1>
-            <button onclick="location.reload()" class="text-xs text-slate-500">Sign Out</button>
+    <!-- Main Studio -->
+    <div id="studioScreen" class="hidden min-h-screen p-8">
+        <header class="flex justify-between items-center mb-8 pb-8 border-b border-slate-800">
+            <h1 class="text-2xl font-bold">King AI <span class="text-indigo-500">Studio</span></h1>
+            <div class="flex gap-4">
+                <input id="projectName" type="text" placeholder="Project Name" class="bg-slate-900 border border-slate-800 rounded-xl px-4 py-2 text-sm text-white">
+                <button onclick="saveProject()" class="bg-emerald-600 px-6 py-2 rounded-xl text-sm font-bold hover:bg-emerald-500 transition">Save Project</button>
+            </div>
         </header>
-        <main class="max-w-7xl mx-auto p-12 text-center">
-            <h2 class="text-3xl font-bold">Welcome to the Pro Studio</h2>
-            <p class="text-slate-400 mt-4">Your identity is verified. You can now access your project library and design tools.</p>
+
+        <main class="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div class="bg-slate-900 p-6 rounded-3xl border border-slate-800 space-y-4">
+                <h3 class="text-xs uppercase text-indigo-400 font-bold">Project Library</h3>
+                <div id="projectList" class="space-y-2"></div>
+                <hr class="border-slate-800">
+                <button onclick="exportWatermarked()" class="w-full bg-slate-800 py-3 rounded-xl hover:bg-slate-700 text-sm transition">Download Preview</button>
+            </div>
+            <div class="md:col-span-3 bg-slate-900 border border-slate-800 rounded-3xl p-4 shadow-2xl flex justify-center">
+                <canvas id="mainCanvas" class="bg-white rounded-xl"></canvas>
+            </div>
         </main>
     </div>
 
     <script>
-        // CONFIG: Replace with your actual Firebase project data
-        const firebaseConfig = { apiKey: "AIza...", authDomain: "...", projectId: "...", storageBucket: "...", messagingSenderId: "...", appId: "..." };
-        firebase.initializeApp(firebaseConfig);
+        const canvas = new fabric.Canvas('mainCanvas', { width: 800, height: 600 });
+        let projects = JSON.parse(localStorage.getItem('myProjects') || '{}');
 
-        function sendOTP() {
-            document.getElementById('phoneStep').classList.add('hidden');
-            document.getElementById('otpStep').classList.remove('hidden');
-            console.log("OTP Sent to user mobile...");
+        function saveProject() {
+            const name = document.getElementById('projectName').value || 'Untitled';
+            projects[name] = canvas.toJSON();
+            localStorage.setItem('myProjects', JSON.stringify(projects));
+            renderProjects();
         }
 
-        function verifyOTP() {
-            // After Firebase Auth confirmation:
-            document.getElementById('authScreen').classList.add('hidden');
-            document.getElementById('studioScreen').classList.remove('hidden');
+        function renderProjects() {
+            const list = document.getElementById('projectList');
+            list.innerHTML = '';
+            Object.keys(projects).forEach(name => {
+                const btn = document.createElement('button');
+                btn.className = 'w-full text-left p-3 bg-slate-800 rounded-xl text-xs hover:bg-slate-700 transition';
+                btn.textContent = name;
+                btn.onclick = () => {
+                    canvas.loadFromJSON(projects[name], canvas.renderAll.bind(canvas));
+                    document.getElementById('projectName').value = name;
+                };
+                list.appendChild(btn);
+            });
         }
+
+        function exportWatermarked() {
+            const watermark = new fabric.Text('PROTECTED - DRAFT', { left: 200, top: 250, fontSize: 50, fill: 'rgba(255,0,0,0.3)', selectable: false });
+            canvas.add(watermark); 
+            canvas.renderAll();
+            const link = document.createElement('a'); 
+            link.download = 'preview.png'; 
+            link.href = canvas.toDataURL(); 
+            link.click();
+            canvas.remove(watermark);
+        }
+
+        renderProjects();
     </script>
 </body>
 </html>
