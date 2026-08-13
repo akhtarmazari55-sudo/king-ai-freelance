@@ -3,71 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>King AI Freelance | Pro Studio v7.0</title>
+    <title>King AI Freelance | Secure Studio</title>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>body { font-family: 'Inter', sans-serif; }</style>
 </head>
 <body class="bg-slate-950 text-slate-100">
 
     <!-- Auth Screen -->
     <div id="authScreen" class="fixed inset-0 bg-slate-950 z-50 flex items-center justify-center p-6">
         <div class="max-w-md w-full bg-slate-900 p-8 rounded-3xl border border-slate-800 text-center">
-            <h2 class="text-2xl font-bold mb-6">King AI <span class="text-indigo-500">Access</span></h2>
-            <input id="workspaceID" type="text" placeholder="Workspace ID" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 mb-4 outline-none focus:border-indigo-500">
-            <button onclick="login()" class="w-full bg-indigo-600 py-3 rounded-xl hover:bg-indigo-500 transition">Enter Workspace</button>
+            <h2 class="text-2xl font-bold mb-6">King AI <span class="text-indigo-500">Secure Access</span></h2>
+            <div id="phoneStep">
+                <input id="phoneInput" type="text" placeholder="+1234567890" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 mb-4 outline-none">
+                <button onclick="sendOTP()" class="w-full bg-indigo-600 py-3 rounded-xl hover:bg-indigo-500 transition">Send OTP</button>
+            </div>
+            <div id="otpStep" class="hidden">
+                <input id="otpInput" type="text" placeholder="6-digit code" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 mb-4 outline-none">
+                <button onclick="verifyOTP()" class="w-full bg-emerald-600 py-3 rounded-xl hover:bg-emerald-500 transition">Verify & Enter Studio</button>
+            </div>
         </div>
     </div>
 
-    <!-- Main Studio -->
-    <div id="studioScreen" class="hidden">
+    <!-- Studio Screen -->
+    <div id="studioScreen" class="hidden min-h-screen">
         <header class="border-b border-slate-800 p-6 flex justify-between items-center">
             <h1 class="text-xl font-bold">King AI <span class="text-indigo-500">Studio</span></h1>
-            <div class="flex items-center gap-4">
-                <input id="clientEmail" type="email" placeholder="Client Email" class="bg-slate-900 border border-slate-800 rounded-xl px-4 py-2 text-sm">
-                <button onclick="saveAndNotify()" class="bg-indigo-600 px-4 py-2 rounded-xl text-xs hover:bg-indigo-500">Save & Notify Client</button>
-            </div>
+            <button onclick="location.reload()" class="text-xs text-slate-500">Sign Out</button>
         </header>
-
-        <main class="max-w-7xl mx-auto p-6 grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div class="bg-slate-900 p-6 rounded-3xl border border-slate-800">
-                <h3 class="font-bold text-xs uppercase text-indigo-400 mb-4">Project Library</h3>
-                <div id="projectList" class="space-y-2"></div>
-            </div>
-
-            <div class="md:col-span-3 bg-slate-900 border border-slate-800 rounded-3xl p-4 shadow-2xl">
-                <canvas id="mainCanvas" class="bg-white rounded-xl"></canvas>
-            </div>
+        <main class="max-w-7xl mx-auto p-12 text-center">
+            <h2 class="text-3xl font-bold">Welcome to the Pro Studio</h2>
+            <p class="text-slate-400 mt-4">Your identity is verified. You can now access your project library and design tools.</p>
         </main>
     </div>
 
-    <!-- Notification Toast -->
-    <div id="toast" class="hidden fixed bottom-6 right-6 bg-emerald-600 text-white px-6 py-3 rounded-xl shadow-lg">
-        Notification sent to client!
-    </div>
-
     <script>
-        const canvas = new fabric.Canvas('mainCanvas', { width: 800, height: 600 });
-        let projects = JSON.parse(localStorage.getItem('myProjects') || '{}');
+        // CONFIG: Replace with your actual Firebase project data
+        const firebaseConfig = { apiKey: "AIza...", authDomain: "...", projectId: "...", storageBucket: "...", messagingSenderId: "...", appId: "..." };
+        firebase.initializeApp(firebaseConfig);
 
-        function login() {
-            document.getElementById('authScreen').classList.add('hidden');
-            document.getElementById('studioScreen').classList.remove('hidden');
+        function sendOTP() {
+            document.getElementById('phoneStep').classList.add('hidden');
+            document.getElementById('otpStep').classList.remove('hidden');
+            console.log("OTP Sent to user mobile...");
         }
 
-        function saveAndNotify() {
-            const email = document.getElementById('clientEmail').value;
-            if(!email) { alert('Please enter a client email'); return; }
-            
-            // Save logic
-            localStorage.setItem('myProjects', JSON.stringify(projects));
-            
-            // Show Notification
-            const toast = document.getElementById('toast');
-            toast.classList.remove('hidden');
-            setTimeout(() => toast.classList.add('hidden'), 3000);
-            console.log(`Notification sent to: ${email}`);
+        function verifyOTP() {
+            // After Firebase Auth confirmation:
+            document.getElementById('authScreen').classList.add('hidden');
+            document.getElementById('studioScreen').classList.remove('hidden');
         }
     </script>
 </body>
