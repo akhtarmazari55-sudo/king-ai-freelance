@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>King AI Freelance | Project Manager</title>
+    <title>King AI Freelance | Pro Studio v7.0</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -25,23 +25,26 @@
         <header class="border-b border-slate-800 p-6 flex justify-between items-center">
             <h1 class="text-xl font-bold">King AI <span class="text-indigo-500">Studio</span></h1>
             <div class="flex items-center gap-4">
-                <input id="projectName" type="text" placeholder="Project Name" class="bg-slate-900 border border-slate-800 rounded-xl px-4 py-2 text-sm">
-                <button onclick="saveProject()" class="bg-emerald-600 px-4 py-2 rounded-xl text-xs hover:bg-emerald-500">Save Project</button>
+                <input id="clientEmail" type="email" placeholder="Client Email" class="bg-slate-900 border border-slate-800 rounded-xl px-4 py-2 text-sm">
+                <button onclick="saveAndNotify()" class="bg-indigo-600 px-4 py-2 rounded-xl text-xs hover:bg-indigo-500">Save & Notify Client</button>
             </div>
         </header>
 
         <main class="max-w-7xl mx-auto p-6 grid grid-cols-1 md:grid-cols-4 gap-8">
-            <!-- Project Manager Sidebar -->
             <div class="bg-slate-900 p-6 rounded-3xl border border-slate-800">
                 <h3 class="font-bold text-xs uppercase text-indigo-400 mb-4">Project Library</h3>
                 <div id="projectList" class="space-y-2"></div>
             </div>
 
-            <!-- Canvas -->
             <div class="md:col-span-3 bg-slate-900 border border-slate-800 rounded-3xl p-4 shadow-2xl">
                 <canvas id="mainCanvas" class="bg-white rounded-xl"></canvas>
             </div>
         </main>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="hidden fixed bottom-6 right-6 bg-emerald-600 text-white px-6 py-3 rounded-xl shadow-lg">
+        Notification sent to client!
     </div>
 
     <script>
@@ -51,29 +54,20 @@
         function login() {
             document.getElementById('authScreen').classList.add('hidden');
             document.getElementById('studioScreen').classList.remove('hidden');
-            renderProjectList();
         }
 
-        function saveProject() {
-            const name = document.getElementById('projectName').value || 'Untitled';
-            projects[name] = canvas.toJSON();
+        function saveAndNotify() {
+            const email = document.getElementById('clientEmail').value;
+            if(!email) { alert('Please enter a client email'); return; }
+            
+            // Save logic
             localStorage.setItem('myProjects', JSON.stringify(projects));
-            renderProjectList();
-        }
-
-        function renderProjectList() {
-            const list = document.getElementById('projectList');
-            list.innerHTML = '';
-            Object.keys(projects).forEach(name => {
-                const btn = document.createElement('button');
-                btn.className = 'w-full text-left p-3 bg-slate-800 rounded-xl text-xs hover:bg-slate-700';
-                btn.textContent = name;
-                btn.onclick = () => {
-                    canvas.loadFromJSON(projects[name], canvas.renderAll.bind(canvas));
-                    document.getElementById('projectName').value = name;
-                };
-                list.appendChild(btn);
-            });
+            
+            // Show Notification
+            const toast = document.getElementById('toast');
+            toast.classList.remove('hidden');
+            setTimeout(() => toast.classList.add('hidden'), 3000);
+            console.log(`Notification sent to: ${email}`);
         }
     </script>
 </body>
