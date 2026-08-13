@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>King AI Freelance | Integrated Studio</title>
+    <title>King AI Freelance | Production Studio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
@@ -15,59 +15,92 @@
 
     <!-- Auth Screen -->
     <div id="authScreen" class="fixed inset-0 bg-slate-950 z-50 flex items-center justify-center p-6">
-        <div class="max-w-md w-full bg-slate-900 p-8 rounded-3xl border border-slate-800 text-center">
+        <div class="max-w-md w-full bg-slate-900 p-8 rounded-3xl border border-slate-800 text-center shadow-2xl">
             <h2 class="text-2xl font-bold mb-6">King AI <span class="text-indigo-500">Access</span></h2>
             <div id="phoneStep">
-                <input id="phoneInput" type="text" placeholder="+1234567890" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 mb-4 outline-none">
-                <button onclick="document.getElementById('phoneStep').classList.add('hidden'); document.getElementById('otpStep').classList.remove('hidden');" class="w-full bg-indigo-600 py-3 rounded-xl hover:bg-indigo-500 transition">Send OTP</button>
+                <input id="phoneInput" type="text" placeholder="+1234567890" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 mb-4 outline-none focus:border-indigo-500 text-sm">
+                <button onclick="document.getElementById('phoneStep').classList.add('hidden'); document.getElementById('otpStep').classList.remove('hidden');" class="w-full bg-indigo-600 py-3 rounded-xl hover:bg-indigo-500 transition text-sm font-semibold">Send OTP</button>
             </div>
             <div id="otpStep" class="hidden">
-                <input id="otpInput" type="text" placeholder="6-digit code" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 mb-4 outline-none">
-                <button onclick="document.getElementById('authScreen').classList.add('hidden'); document.getElementById('studioScreen').classList.remove('hidden');" class="w-full bg-emerald-600 py-3 rounded-xl hover:bg-emerald-500 transition">Verify & Start</button>
+                <input id="otpInput" type="text" placeholder="6-digit code" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 mb-4 outline-none focus:border-emerald-500 text-sm">
+                <button onclick="document.getElementById('authScreen').classList.add('hidden'); document.getElementById('studioScreen').classList.remove('hidden');" class="w-full bg-emerald-600 py-3 rounded-xl hover:bg-emerald-500 transition text-sm font-semibold">Verify & Start</button>
             </div>
         </div>
     </div>
 
     <!-- Main Studio -->
-    <div id="studioScreen" class="hidden min-h-screen p-8">
-        <header class="flex justify-between items-center mb-8 pb-8 border-b border-slate-800">
+    <div id="studioScreen" class="hidden min-h-screen p-6 md:p-8">
+        <header class="flex flex-col md:flex-row justify-between items-center mb-8 pb-6 border-b border-slate-800 gap-4">
             <h1 class="text-2xl font-bold">King AI <span class="text-indigo-500">Studio</span></h1>
-            <div class="flex gap-4">
-                <input id="projectName" type="text" placeholder="Project Name" class="bg-slate-900 border border-slate-800 rounded-xl px-4 py-2 text-sm text-white">
-                <button onclick="saveProject()" class="bg-emerald-600 px-6 py-2 rounded-xl text-sm font-bold hover:bg-emerald-500 transition">Save Project</button>
+            <div class="flex items-center gap-4 w-full md:w-auto">
+                <input id="projectName" type="text" placeholder="Project Name" class="bg-slate-900 border border-slate-800 rounded-xl px-4 py-2 text-sm text-white outline-none focus:border-indigo-500 w-full md:w-64">
+                <button id="saveBtn" onclick="saveProject()" class="bg-emerald-600 px-6 py-2 rounded-xl text-sm font-bold hover:bg-emerald-500 transition whitespace-nowrap flex items-center gap-2">
+                    <span id="saveText">Save Project</span>
+                </button>
             </div>
         </header>
 
         <main class="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div class="bg-slate-900 p-6 rounded-3xl border border-slate-800 space-y-4">
-                <h3 class="text-xs uppercase text-indigo-400 font-bold">Project Library</h3>
-                <div id="projectList" class="space-y-2"></div>
+                <h3 class="text-xs uppercase text-indigo-400 font-bold tracking-wider">Project Library</h3>
+                <div id="projectList" class="space-y-2 max-h-96 overflow-y-auto pr-1"></div>
                 <hr class="border-slate-800">
-                <button onclick="exportWatermarked()" class="w-full bg-slate-800 py-3 rounded-xl hover:bg-slate-700 text-sm transition">Download Preview</button>
+                <button onclick="exportWatermarked()" class="w-full bg-slate-800 py-3 rounded-xl hover:bg-slate-700 text-sm transition font-medium">Download Preview</button>
             </div>
-            <div class="md:col-span-3 bg-slate-900 border border-slate-800 rounded-3xl p-4 shadow-2xl flex justify-center">
-                <canvas id="mainCanvas" class="bg-white rounded-xl"></canvas>
+            <div id="canvas-wrapper" class="md:col-span-3 bg-slate-900 border border-slate-800 rounded-3xl p-4 shadow-2xl flex justify-center overflow-hidden">
+                <canvas id="mainCanvas"></canvas>
             </div>
         </main>
     </div>
 
     <script>
-        const canvas = new fabric.Canvas('mainCanvas', { width: 800, height: 600 });
+        // Responsive Scaling Canvas setup
+        const wrapper = document.getElementById('canvas-wrapper');
+        const containerWidth = Math.min(wrapper.clientWidth - 32, 800);
+        const canvasHeight = 600;
+
+        const canvas = new fabric.Canvas('mainCanvas', { 
+            width: containerWidth, 
+            height: canvasHeight 
+        });
+
         let projects = JSON.parse(localStorage.getItem('myProjects') || '{}');
 
+        // Robust Save Project with Error Handling and Loading State
         function saveProject() {
-            const name = document.getElementById('projectName').value || 'Untitled';
-            projects[name] = canvas.toJSON();
-            localStorage.setItem('myProjects', JSON.stringify(projects));
-            renderProjects();
+            const name = document.getElementById('projectName').value.trim() || 'Untitled Project';
+            const saveBtn = document.getElementById('saveBtn');
+            const saveText = document.getElementById('saveText');
+
+            // Show loading spinner state
+            saveBtn.disabled = true;
+            saveText.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Saving...';
+
+            setTimeout(() => {
+                try {
+                    projects[name] = canvas.toJSON();
+                    localStorage.setItem('myProjects', JSON.stringify(projects));
+                    renderProjects();
+                    saveText.textContent = 'Saved!';
+                    setTimeout(() => { saveText.textContent = 'Save Project'; saveBtn.disabled = false; }, 1500);
+                } catch (error) {
+                    alert('Error: Browser storage is full. Please clear some space.');
+                    saveText.textContent = 'Save Project';
+                    saveBtn.disabled = false;
+                }
+            }, 500); // Simulate network latency for visual feedback
         }
 
         function renderProjects() {
             const list = document.getElementById('projectList');
             list.innerHTML = '';
+            if (Object.keys(projects).length === 0) {
+                list.innerHTML = '<p class="text-xs text-slate-500 italic">No saved projects yet.</p>';
+                return;
+            }
             Object.keys(projects).forEach(name => {
                 const btn = document.createElement('button');
-                btn.className = 'w-full text-left p-3 bg-slate-800 rounded-xl text-xs hover:bg-slate-700 transition';
+                btn.className = 'w-full text-left p-3 bg-slate-800 rounded-xl text-xs hover:bg-slate-700 transition truncate';
                 btn.textContent = name;
                 btn.onclick = () => {
                     canvas.loadFromJSON(projects[name], canvas.renderAll.bind(canvas));
@@ -78,14 +111,23 @@
         }
 
         function exportWatermarked() {
-            const watermark = new fabric.Text('PROTECTED - DRAFT', { left: 200, top: 250, fontSize: 50, fill: 'rgba(255,0,0,0.3)', selectable: false });
+            const watermark = new fabric.Text('PROTECTED - DRAFT', { 
+                left: canvas.width / 4, 
+                top: canvas.height / 2 - 25, 
+                fontSize: 40, 
+                fill: 'rgba(255,0,0,0.3)', 
+                selectable: false 
+            });
             canvas.add(watermark); 
             canvas.renderAll();
+            
             const link = document.createElement('a'); 
-            link.download = 'preview.png'; 
+            link.download = 'project-preview.png'; 
             link.href = canvas.toDataURL(); 
             link.click();
+            
             canvas.remove(watermark);
+            canvas.renderAll();
         }
 
         renderProjects();
