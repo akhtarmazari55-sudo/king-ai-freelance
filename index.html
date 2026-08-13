@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>King AI Freelance | Next-Gen AI Solutions & Animation Studio</title>
+    <title>King AI Freelance | Collaboration & Communication Hub</title>
     <!-- Tailwind CSS for modern international styling -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome for icons -->
@@ -26,9 +26,8 @@
             </div>
             <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-300">
                 <a href="#services" class="hover:text-indigo-400 transition">Services</a>
+                <a href="#workspace" class="hover:text-indigo-400 transition">Live Workspace</a>
                 <a href="#animation" class="hover:text-indigo-400 transition">Animation Studio</a>
-                <a href="#showcase" class="hover:text-indigo-400 transition">AI Showcases</a>
-                <a href="#testimonials" class="hover:text-indigo-400 transition">Testimonials</a>
                 <a href="#contact" class="bg-indigo-600 hover:bg-indigo-500 text-white px-5 py-2.5 rounded-xl shadow-lg shadow-indigo-600/30 transition">Get Started</a>
             </nav>
         </div>
@@ -39,23 +38,91 @@
         <div class="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.15),rgba(255,255,255,0))]"></div>
         <div class="max-w-7xl mx-auto px-6 relative z-10 text-center">
             <span class="inline-flex items-center gap-1.5 py-1.5 px-4 rounded-full text-xs font-semibold bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 mb-6">
-                <span class="w-2 h-2 rounded-full bg-indigo-400 animate-pulse"></span> Available for Global Projects
+                <span class="w-2 h-2 rounded-full bg-indigo-400 animate-pulse"></span> Real-Time Collaboration Enabled
             </span>
             <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white max-w-4xl mx-auto leading-tight">
-                Supercharge Your Business with <span class="bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent">Advanced AI Solutions</span>
+                Connect, Call & Share Screens with <span class="bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent">Global Experts</span>
             </h1>
             <p class="mt-6 text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed">
-                We design custom AI workflows, automated content architectures, and specialized character animation frameworks built for global reach.
+                Experience seamless project communication with built-in live messaging, video consultation rooms, and interactive screen sharing.
             </p>
             <div class="mt-10 flex flex-col sm:flex-row justify-center gap-4">
-                <a href="#contact" class="bg-indigo-600 hover:bg-indigo-500 text-white font-medium px-8 py-4 rounded-xl shadow-xl shadow-indigo-600/25 transition text-center">Hire Our Experts</a>
-                <a href="#animation" class="bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-200 font-medium px-8 py-4 rounded-xl transition text-center">Explore Animation Studio</a>
+                <a href="#workspace" class="bg-indigo-600 hover:bg-indigo-500 text-white font-medium px-8 py-4 rounded-xl shadow-xl shadow-indigo-600/25 transition text-center">Open Live Workspace</a>
+                <a href="#services" class="bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-200 font-medium px-8 py-4 rounded-xl transition text-center">Explore Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW FEATURE: Live Workspace & Communication Hub -->
+    <section id="workspace" class="py-24 border-t border-slate-900 bg-slate-900/40">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-indigo-400 mb-3">Interactive Portal</h2>
+                <p class="text-3xl sm:text-4xl font-bold tracking-tight text-white">Client-Freelancer Meeting & Chat Room</p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Video / Screen Share Viewport Simulation -->
+                <div class="lg:col-span-2 bg-slate-900 border border-slate-800 rounded-3xl p-6 flex flex-col justify-between shadow-2xl">
+                    <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+                        <div class="flex items-center space-x-3">
+                            <span class="w-3 h-3 bg-red-500 rounded-full animate-ping"></span>
+                            <span class="font-semibold text-white text-sm">Secure Consultation Room #104</span>
+                        </div>
+                        <span class="text-xs bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 px-3 py-1 rounded-full">WebRTC Ready</span>
+                    </div>
+
+                    <!-- Screen Share Mock View -->
+                    <div class="my-6 bg-slate-950 border border-slate-800 rounded-2xl h-72 flex flex-col items-center justify-center relative overflow-hidden group">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-indigo-950/20 to-violet-950/20"></div>
+                        <i class="fa-solid fa-desktop text-5xl text-indigo-500 mb-4 animate-bounce"></i>
+                        <p class="text-slate-300 font-medium text-sm z-10">Screen Share & Video Stream Feed</p>
+                        <p class="text-slate-500 text-xs mt-1 z-10">Click below to activate media channel</p>
+                    </div>
+
+                    <!-- Room Controls -->
+                    <div class="flex flex-wrap items-center justify-center gap-4 pt-2">
+                        <button onclick="alert('Camera feed toggled!')" class="bg-slate-800 hover:bg-slate-700 text-slate-200 px-5 py-3 rounded-xl text-sm font-medium transition flex items-center gap-2">
+                            <i class="fa-solid fa-video text-indigo-400"></i> Toggle Cam
+                        </button>
+                        <button onclick="alert('Microphone toggled!')" class="bg-slate-800 hover:bg-slate-700 text-slate-200 px-5 py-3 rounded-xl text-sm font-medium transition flex items-center gap-2">
+                            <i class="fa-solid fa-microphone text-indigo-400"></i> Toggle Mic
+                        </button>
+                        <button onclick="alert('Screen share stream initialized!')" class="bg-indigo-600 hover:bg-indigo-500 text-white px-6 py-3 rounded-xl text-sm font-medium transition flex items-center gap-2 shadow-lg shadow-indigo-600/30">
+                            <i class="fa-solid fa-share-nodes"></i> Share Screen
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Live Chat Widget Box -->
+                <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 flex flex-col justify-between shadow-2xl">
+                    <div>
+                        <div class="flex items-center justify-between pb-4 border-b border-slate-800 mb-4">
+                            <h3 class="font-semibold text-white text-sm">Direct Project Chat</h3>
+                            <span class="text-xs text-emerald-400 flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-emerald-400"></span> Online</span>
+                        </div>
+                        <!-- Chat Message History -->
+                        <div id="chatBox" class="space-y-3 h-64 overflow-y-auto pr-2 text-xs">
+                            <div class="bg-slate-950 p-3 rounded-xl border border-slate-800">
+                                <span class="text-indigo-400 font-semibold">King AI Expert:</span>
+                                <p class="text-slate-300 mt-1">Hello! Ready to review your project workflow and asset designs.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Message Input Form -->
+                    <form onsubmit="sendMessage(event)" class="mt-4 pt-4 border-t border-slate-800 flex gap-2">
+                        <input type="text" id="chatInput" placeholder="Type message..." required class="flex-1 bg-slate-950 border border-slate-800 rounded-xl px-3 py-2.5 text-xs text-slate-200 focus:outline-none focus:border-indigo-500">
+                        <button type="submit" class="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2.5 rounded-xl text-xs font-medium transition">
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Services Grid -->
-    <section id="services" class="py-24 border-t border-slate-900 bg-slate-900/40">
+    <section id="services" class="py-24 border-t border-slate-900">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center max-w-3xl mx-auto mb-16">
                 <h2 class="text-xs font-bold uppercase tracking-widest text-indigo-400 mb-3">Our Expertise</h2>
@@ -87,176 +154,36 @@
         </div>
     </section>
 
-    <!-- NEW SECTION: Vegetable Animation Studio Showcase -->
-    <section id="animation" class="py-24 border-t border-slate-900">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <h2 class="text-xs font-bold uppercase tracking-widest text-indigo-400 mb-3">Specialized Studio Line</h2>
-                <p class="text-3xl sm:text-4xl font-bold tracking-tight text-white">Veggie Cartoons & Character Frameworks</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-slate-900 border border-slate-800 p-8 rounded-3xl">
-                    <div class="text-indigo-400 text-2xl mb-4"><i class="fa-solid fa-carrot"></i></div>
-                    <h3 class="text-lg font-semibold text-white mb-2">Character Concept Design</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Unique storylines and vibrant visual designs featuring characters like Okra, Bitter Gourd, Carrot, Potato, and Cucumber.</p>
-                </div>
-                <div class="bg-slate-900 border border-slate-800 p-8 rounded-3xl">
-                    <div class="text-indigo-400 text-2xl mb-4"><i class="fa-solid fa-video"></i></div>
-                    <h3 class="text-lg font-semibold text-white mb-2">Multi-Platform Scripting</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Optimized titles, layouts, and high-retention video design frameworks tailored specifically for TikTok, Shorts, and Reels.</p>
-                </div>
-                <div class="bg-slate-900 border border-slate-800 p-8 rounded-3xl">
-                    <div class="text-indigo-400 text-2xl mb-4"><i class="fa-solid fa-chart-line"></i></div>
-                    <h3 class="text-lg font-semibold text-white mb-2">View & Analytics Tracking</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Data-driven performance tracking to maximize audience growth and engagement across digital distribution networks.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- AI Content Showcase Section -->
-    <section id="showcase" class="py-24 border-t border-slate-900 bg-slate-900/40">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <h2 class="text-xs font-bold uppercase tracking-widest text-indigo-400 mb-3">Resource & Concept Vault</h2>
-                <p class="text-3xl sm:text-4xl font-bold tracking-tight text-white">Interactive AI Showcases</p>
-            </div>
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <div class="bg-slate-900 border border-slate-800 p-8 rounded-3xl relative overflow-hidden">
-                    <span class="text-xs font-semibold text-indigo-400 bg-indigo-500/10 px-3 py-1 rounded-full">Media Pipeline</span>
-                    <h3 class="text-2xl font-bold text-white mt-4 mb-2">Automated Animation Scripting</h3>
-                    <p class="text-slate-400 text-sm mb-6 leading-relaxed">Advanced programmatic templates optimized for multi-platform engagement, character framing, and high-retention editing layouts.</p>
-                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 font-mono text-xs text-slate-300">
-                        <code>// Multi-Platform Pipeline Active<br>Target: Shorts / Reels / TikTok<br>Status: Ready for Global Deployment</code>
-                    </div>
-                </div>
-                <div class="bg-slate-900 border border-slate-800 p-8 rounded-3xl relative overflow-hidden">
-                    <span class="text-xs font-semibold text-indigo-400 bg-indigo-500/10 px-3 py-1 rounded-full">Infrastructure</span>
-                    <h3 class="text-2xl font-bold text-white mt-4 mb-2">Secure Git & Cloud Sync</h3>
-                    <p class="text-slate-400 text-sm mb-6 leading-relaxed">Continuous deployment workflows configured with enterprise-grade token security and zero downtime architecture.</p>
-                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 font-mono text-xs text-slate-300">
-                        <code>git remote set-url origin secure_token<br>git push -u origin main --force<br>Status: 100% Synced & Live</code>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="py-24 border-t border-slate-900">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <h2 class="text-xs font-bold uppercase tracking-widest text-indigo-400 mb-3">Client Success</h2>
-                <p class="text-3xl sm:text-4xl font-bold tracking-tight text-white">Trusted by Global Innovators</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="bg-slate-900 border border-slate-800 p-8 rounded-3xl">
-                    <div class="flex text-amber-400 space-x-1 mb-4 text-sm">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                    </div>
-                    <p class="text-slate-300 text-sm leading-relaxed mb-6">"King AI Freelance built our automated content pipelines with absolute precision. Exceptional technical execution and fast deployment."</p>
-                    <div class="font-semibold text-white text-sm">Marcus Vance</div>
-                    <div class="text-xs text-slate-500">Digital Media Director, USA</div>
-                </div>
-                <div class="bg-slate-900 border border-slate-800 p-8 rounded-3xl">
-                    <div class="flex text-amber-400 space-x-1 mb-4 text-sm">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                    </div>
-                    <p class="text-slate-300 text-sm leading-relaxed mb-6">"Incredible focus on web performance and clean system architecture. Our application scaled seamlessly from day one."</p>
-                    <div class="font-semibold text-white text-sm">Elena Rostova</div>
-                    <div class="text-xs text-slate-500">Tech Founder, Germany</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Interactive Project Scope Calculator -->
-    <section id="calculator" class="py-24 border-t border-slate-900 bg-slate-900/40">
-        <div class="max-w-3xl mx-auto px-6">
-            <div class="text-center mb-12">
-                <h2 class="text-xs font-bold uppercase tracking-widest text-indigo-400 mb-3">Interactive Estimator</h2>
-                <p class="text-3xl font-bold tracking-tight text-white">Calculate Your Project Scope</p>
-            </div>
-            <div class="bg-slate-900/90 border border-slate-800 p-8 rounded-3xl shadow-2xl">
-                <div class="space-y-6">
-                    <div>
-                        <label class="block text-sm font-medium text-slate-300 mb-2">Select Primary Service</label>
-                        <select id="serviceType" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:border-indigo-500">
-                            <option value="500">AI Automation Architecture - $500</option>
-                            <option value="350">Digital Media & Animation Systems - $350</option>
-                            <option value="800">Full-Stack Web Application - $800</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-slate-300 mb-2">Delivery Speed</label>
-                        <select id="deliverySpeed" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:border-indigo-500">
-                            <option value="1">Standard Timeline</option>
-                            <option value="1.3">Express Delivery (+30%)</option>
-                        </select>
-                    </div>
-                    <div class="pt-6 border-t border-slate-800 flex items-center justify-between">
-                        <div>
-                            <span class="text-sm text-slate-400">Estimated Investment</span>
-                            <div id="totalPrice" class="text-3xl font-extrabold text-indigo-400">$500</div>
-                        </div>
-                        <a href="#contact" class="bg-indigo-600 hover:bg-indigo-500 text-white font-medium px-6 py-3 rounded-xl transition">Request Quote</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Form Section -->
-    <section id="contact" class="py-24 border-t border-slate-900">
-        <div class="max-w-2xl mx-auto px-6">
-            <div class="text-center mb-12">
-                <h2 class="text-xs font-bold uppercase tracking-widest text-indigo-400 mb-3">Get In Touch</h2>
-                <p class="text-3xl font-bold tracking-tight text-white">Let's Build Something Extraordinary</p>
-            </div>
-            <form onsubmit="handleContact(event)" class="space-y-6 bg-slate-900 border border-slate-800 p-8 rounded-3xl">
-                <div>
-                    <label class="block text-sm font-medium text-slate-300 mb-2">Your Name</label>
-                    <input type="text" required class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:border-indigo-500" placeholder="John Doe">
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-slate-300 mb-2">Email Address</label>
-                    <input type="email" required class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:border-indigo-500" placeholder="john@example.com">
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-slate-300 mb-2">Project Details</label>
-                    <textarea rows="4" required class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:border-indigo-500" placeholder="Describe your requirements..."></textarea>
-                </div>
-                <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-medium py-4 rounded-xl shadow-lg shadow-indigo-600/30 transition">Send Message</button>
-                <p id="successMsg" class="hidden text-center text-emerald-400 text-sm font-medium mt-4">Thank you! Your inquiry has been sent successfully.</p>
-            </form>
-        </div>
-    </section>
-
     <!-- Footer -->
     <footer class="border-t border-slate-900 py-12 text-center text-sm text-slate-500">
         <p>&copy; 2026 King AI Freelance. All rights reserved. Built for international excellence.</p>
     </footer>
 
-    <!-- Interactive Logic Script -->
+    <!-- Interactive Chat Script -->
     <script>
-        const serviceSelect = document.getElementById('serviceType');
-        const speedSelect = document.getElementById('deliverySpeed');
-        const totalPriceEl = document.getElementById('totalPrice');
-
-        function updatePrice() {
-            const base = parseFloat(serviceSelect.value);
-            const multiplier = parseFloat(speedSelect.value);
-            const total = Math.round(base * multiplier);
-            totalPriceEl.textContent = `$${total}`;
-        }
-
-        serviceSelect.addEventListener('change', updatePrice);
-        speedSelect.addEventListener('change', updatePrice);
-
-        function handleContact(e) {
+        function sendMessage(e) {
             e.preventDefault();
-            document.getElementById('successMsg').classList.remove('hidden');
-            e.target.reset();
+            const input = document.getElementById('chatInput');
+            const chatBox = document.getElementById('chatBox');
+            if(!input.value.trim()) return;
+
+            // Append user message
+            const userMsg = document.createElement('div');
+            userMsg.className = 'bg-indigo-950/40 p-3 rounded-xl border border-indigo-900/50 text-right';
+            userMsg.innerHTML = `<span class="text-indigo-300 font-semibold">You:</span><p class="text-slate-300 mt-1">${input.value}</p>`;
+            chatBox.appendChild(userMsg);
+
+            input.value = '';
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            // Simulate automated response
+            setTimeout(() => {
+                const reply = document.createElement('div');
+                reply.className = 'bg-slate-950 p-3 rounded-xl border border-slate-800';
+                reply.innerHTML = `<span class="text-indigo-400 font-semibold">King AI Expert:</span><p class="text-slate-300 mt-1">Got your note! Working on this requirement right now.</p>`;
+                chatBox.appendChild(reply);
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }, 1000);
         }
     </script>
 </body>
