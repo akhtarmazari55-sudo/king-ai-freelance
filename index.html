@@ -3,61 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>King AI Freelance | Interactive Design Studio</title>
+    <title>King AI Freelance | Pro Studio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>body { font-family: 'Inter', sans-serif; }</style>
 </head>
-<body class="bg-slate-950 text-slate-100 antialiased">
+<body class="bg-slate-950 text-slate-100">
 
-    <!-- Navbar -->
-    <header class="border-b border-slate-800 bg-slate-950">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <h1 class="text-xl font-bold text-white">King AI <span class="text-indigo-400">Studio</span></h1>
-            <button onclick="downloadCanvas()" class="bg-indigo-600 px-6 py-2 rounded-xl text-sm font-medium hover:bg-indigo-500 transition">Download Image</button>
+    <header class="border-b border-slate-800 p-6 flex justify-between items-center">
+        <h1 class="text-2xl font-bold">King AI <span class="text-indigo-500">Pro Studio</span></h1>
+        <div class="space-x-4">
+            <button onclick="downloadDesign()" class="bg-indigo-600 px-6 py-2 rounded-xl text-sm hover:bg-indigo-500 transition">Export Project</button>
         </div>
     </header>
 
-    <!-- Main Workspace -->
-    <div class="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 lg:grid-cols-4 gap-8">
-        <!-- Asset Library Sidebar -->
-        <div class="col-span-1 space-y-4">
-            <h3 class="font-semibold text-slate-300 mb-4">Assets</h3>
-            <button onclick="addCharacter('Okra')" class="w-full bg-slate-900 border border-slate-800 p-4 rounded-xl text-left hover:border-indigo-500 transition">
-                <i class="fa-solid fa-carrot text-indigo-400 mr-2"></i> Add Okra
-            </button>
-            <button onclick="addCharacter('Cucumber')" class="w-full bg-slate-900 border border-slate-800 p-4 rounded-xl text-left hover:border-indigo-500 transition">
-                <i class="fa-solid fa-leaf text-indigo-400 mr-2"></i> Add Cucumber
-            </button>
+    <main class="max-w-7xl mx-auto p-6 grid grid-cols-1 md:grid-cols-4 gap-8">
+        <!-- Toolbar -->
+        <div class="bg-slate-900 p-6 rounded-3xl border border-slate-800 space-y-6">
+            <h3 class="font-bold text-sm uppercase tracking-widest text-indigo-400">Asset Vault</h3>
+            <button onclick="addImage('https://cdn-icons-png.flaticon.com/128/1047/1047648.png')" class="w-full bg-slate-800 p-3 rounded-xl hover:bg-slate-700">🥕 Add Carrot</button>
+            <button onclick="addImage('https://cdn-icons-png.flaticon.com/128/2967/2967396.png')" class="w-full bg-slate-800 p-3 rounded-xl hover:bg-slate-700">🥒 Add Cucumber</button>
+            <button onclick="addText()" class="w-full bg-indigo-900/50 border border-indigo-500 p-3 rounded-xl hover:bg-indigo-800">Add Text Label</button>
         </div>
 
-        <!-- Canvas Workspace -->
-        <div class="col-span-3 bg-slate-900 border border-slate-800 rounded-3xl p-4 min-h-[500px] flex justify-center items-center">
-            <canvas id="c" width="600" height="400" class="border border-slate-700 bg-white rounded-xl"></canvas>
+        <!-- Canvas -->
+        <div class="md:col-span-3 bg-slate-900 border border-slate-800 rounded-3xl p-4 overflow-hidden">
+            <canvas id="mainCanvas" class="bg-white rounded-xl shadow-2xl"></canvas>
         </div>
-    </div>
+    </main>
 
     <script>
-        // Initialize Fabric Canvas
-        const canvas = new fabric.Canvas('c');
+        const canvas = new fabric.Canvas('mainCanvas', { width: 800, height: 600 });
 
-        function addCharacter(name) {
-            // Simulate adding an asset (using a text placeholder for this demo)
-            const text = new fabric.Text(name, {
-                left: 100,
-                top: 100,
-                fontSize: 30,
-                fill: '#4f46e5'
-            });
+        function addImage(url) {
+            fabric.Image.fromURL(url, function(img) {
+                img.scale(0.5);
+                canvas.add(img);
+            }, { crossOrigin: 'anonymous' });
+        }
+
+        function addText() {
+            const text = new fabric.IText('New Graphic', { left: 100, top: 100, fontFamily: 'Arial', fill: '#1e1b4b' });
             canvas.add(text);
         }
 
-        function downloadCanvas() {
-            const dataURL = canvas.toDataURL({ format: 'png' });
+        function downloadDesign() {
             const link = document.createElement('a');
-            link.download = 'design.png';
-            link.href = dataURL;
+            link.download = 'king-ai-design.png';
+            link.href = canvas.toDataURL({ format: 'png' });
             link.click();
         }
     </script>
