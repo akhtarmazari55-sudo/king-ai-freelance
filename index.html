@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>King AI Freelance | Collaboration & Communication Hub</title>
+    <title>King AI Freelance | AI Video & Script Studio</title>
     <!-- Tailwind CSS for modern international styling -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome for icons -->
@@ -25,9 +25,9 @@
                 <span class="text-xl font-bold tracking-tight text-white">King AI <span class="text-indigo-400">Freelance</span></span>
             </div>
             <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-300">
-                <a href="#services" class="hover:text-indigo-400 transition">Services</a>
+                <a href="#studio" class="hover:text-indigo-400 transition">AI Video Studio</a>
                 <a href="#workspace" class="hover:text-indigo-400 transition">Live Workspace</a>
-                <a href="#animation" class="hover:text-indigo-400 transition">Animation Studio</a>
+                <a href="#services" class="hover:text-indigo-400 transition">Services</a>
                 <a href="#contact" class="bg-indigo-600 hover:bg-indigo-500 text-white px-5 py-2.5 rounded-xl shadow-lg shadow-indigo-600/30 transition">Get Started</a>
             </nav>
         </div>
@@ -38,23 +38,80 @@
         <div class="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.15),rgba(255,255,255,0))]"></div>
         <div class="max-w-7xl mx-auto px-6 relative z-10 text-center">
             <span class="inline-flex items-center gap-1.5 py-1.5 px-4 rounded-full text-xs font-semibold bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 mb-6">
-                <span class="w-2 h-2 rounded-full bg-indigo-400 animate-pulse"></span> Real-Time Collaboration Enabled
+                <span class="w-2 h-2 rounded-full bg-indigo-400 animate-pulse"></span> AI Video Generator Studio Active
             </span>
             <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white max-w-4xl mx-auto leading-tight">
-                Connect, Call & Share Screens with <span class="bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent">Global Experts</span>
+                Generate Character Animations & <span class="bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent">AI Video Assets</span>
             </h1>
             <p class="mt-6 text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed">
-                Experience seamless project communication with built-in live messaging, video consultation rooms, and interactive screen sharing.
+                Empower your workflow with real-time prompt generation for viral character animations, scripted scenes, and multi-platform media.
             </p>
             <div class="mt-10 flex flex-col sm:flex-row justify-center gap-4">
-                <a href="#workspace" class="bg-indigo-600 hover:bg-indigo-500 text-white font-medium px-8 py-4 rounded-xl shadow-xl shadow-indigo-600/25 transition text-center">Open Live Workspace</a>
-                <a href="#services" class="bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-200 font-medium px-8 py-4 rounded-xl transition text-center">Explore Services</a>
+                <a href="#studio" class="bg-indigo-600 hover:bg-indigo-500 text-white font-medium px-8 py-4 rounded-xl shadow-xl shadow-indigo-600/25 transition text-center">Launch Video Studio</a>
+                <a href="#workspace" class="bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-200 font-medium px-8 py-4 rounded-xl transition text-center">Open Collaboration Hub</a>
             </div>
         </div>
     </section>
 
-    <!-- NEW FEATURE: Live Workspace & Communication Hub -->
-    <section id="workspace" class="py-24 border-t border-slate-900 bg-slate-900/40">
+    <!-- NEW FEATURE: AI Video & Script Generator Studio -->
+    <section id="studio" class="py-24 border-t border-slate-900 bg-slate-900/40">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-indigo-400 mb-3">Creator Studio</h2>
+                <p class="text-3xl sm:text-4xl font-bold tracking-tight text-white">AI Video & Script Synthesizer</p>
+            </div>
+            
+            <div class="bg-slate-900 border border-slate-800 rounded-3xl p-8 shadow-2xl">
+                <form onsubmit="generateVideoContent(event)" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-300 mb-2">Character / Subject</label>
+                            <select id="charSelect" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:border-indigo-500">
+                                <option value="Okra & Bitter Gourd adventure scene">Okra & Bitter Gourd Adventure</option>
+                                <option value="Carrot and Potato comedy sketch">Carrot & Potato Comedy Sketch</option>
+                                <option value="Cucumber cooking show episode">Cucumber Cooking Show</option>
+                                <option value="Custom Vegetable Ensemble">Custom Ensemble Concept</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-300 mb-2">Platform Target</label>
+                            <select id="platformSelect" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:border-indigo-500">
+                                <option value="TikTok & YouTube Shorts (Vertical 9:16)">TikTok & YouTube Shorts (9:16)</option>
+                                <option value="Instagram Reels (High Retention)">Instagram Reels</option>
+                                <option value="Full Cinematic Animation (16:9)">Cinematic YouTube (16:9)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-slate-300 mb-2">Scene Description / Prompt Details</label>
+                        <textarea id="promptInput" rows="3" required class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:border-indigo-500" placeholder="e.g. Energetic animation style, vibrant lighting, comical facial expressions..."></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-medium py-4 rounded-xl shadow-lg shadow-indigo-600/30 transition flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-clapperboard"></i> Generate AI Video Script & Prompt Assets
+                    </button>
+                </form>
+
+                <!-- Output Display Window -->
+                <div id="outputContainer" class="hidden mt-8 p-6 bg-slate-950 border border-slate-800 rounded-2xl space-y-4">
+                    <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                        <span class="text-xs font-semibold text-emerald-400 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Generation Successful</span>
+                        <span id="outputPlatform" class="text-xs text-slate-400"></span>
+                    </div>
+                    <div>
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-indigo-400 mb-1">Generated Visual Prompt</h4>
+                        <p id="resPrompt" class="text-sm text-slate-200 bg-slate-900 p-3 rounded-xl border border-slate-800/80 font-mono"></p>
+                    </div>
+                    <div>
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-indigo-400 mb-1">Optimized Video Script Layout</h4>
+                        <p id="resScript" class="text-sm text-slate-300 bg-slate-900 p-3 rounded-xl border border-slate-800/80"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Workspace & Communication Hub -->
+    <section id="workspace" class="py-24 border-t border-slate-900">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center max-w-3xl mx-auto mb-16">
                 <h2 class="text-xs font-bold uppercase tracking-widest text-indigo-400 mb-3">Interactive Portal</h2>
@@ -62,7 +119,6 @@
             </div>
             
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <!-- Video / Screen Share Viewport Simulation -->
                 <div class="lg:col-span-2 bg-slate-900 border border-slate-800 rounded-3xl p-6 flex flex-col justify-between shadow-2xl">
                     <div class="flex items-center justify-between pb-4 border-b border-slate-800">
                         <div class="flex items-center space-x-3">
@@ -71,16 +127,12 @@
                         </div>
                         <span class="text-xs bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 px-3 py-1 rounded-full">WebRTC Ready</span>
                     </div>
-
-                    <!-- Screen Share Mock View -->
                     <div class="my-6 bg-slate-950 border border-slate-800 rounded-2xl h-72 flex flex-col items-center justify-center relative overflow-hidden group">
                         <div class="absolute inset-0 bg-gradient-to-tr from-indigo-950/20 to-violet-950/20"></div>
                         <i class="fa-solid fa-desktop text-5xl text-indigo-500 mb-4 animate-bounce"></i>
                         <p class="text-slate-300 font-medium text-sm z-10">Screen Share & Video Stream Feed</p>
                         <p class="text-slate-500 text-xs mt-1 z-10">Click below to activate media channel</p>
                     </div>
-
-                    <!-- Room Controls -->
                     <div class="flex flex-wrap items-center justify-center gap-4 pt-2">
                         <button onclick="alert('Camera feed toggled!')" class="bg-slate-800 hover:bg-slate-700 text-slate-200 px-5 py-3 rounded-xl text-sm font-medium transition flex items-center gap-2">
                             <i class="fa-solid fa-video text-indigo-400"></i> Toggle Cam
@@ -94,14 +146,12 @@
                     </div>
                 </div>
 
-                <!-- Live Chat Widget Box -->
                 <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 flex flex-col justify-between shadow-2xl">
                     <div>
                         <div class="flex items-center justify-between pb-4 border-b border-slate-800 mb-4">
                             <h3 class="font-semibold text-white text-sm">Direct Project Chat</h3>
                             <span class="text-xs text-emerald-400 flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-emerald-400"></span> Online</span>
                         </div>
-                        <!-- Chat Message History -->
                         <div id="chatBox" class="space-y-3 h-64 overflow-y-auto pr-2 text-xs">
                             <div class="bg-slate-950 p-3 rounded-xl border border-slate-800">
                                 <span class="text-indigo-400 font-semibold">King AI Expert:</span>
@@ -109,7 +159,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Message Input Form -->
                     <form onsubmit="sendMessage(event)" class="mt-4 pt-4 border-t border-slate-800 flex gap-2">
                         <input type="text" id="chatInput" placeholder="Type message..." required class="flex-1 bg-slate-950 border border-slate-800 rounded-xl px-3 py-2.5 text-xs text-slate-200 focus:outline-none focus:border-indigo-500">
                         <button type="submit" class="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2.5 rounded-xl text-xs font-medium transition">
@@ -122,7 +171,7 @@
     </section>
 
     <!-- Services Grid -->
-    <section id="services" class="py-24 border-t border-slate-900">
+    <section id="services" class="py-24 border-t border-slate-900 bg-slate-900/40">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center max-w-3xl mx-auto mb-16">
                 <h2 class="text-xs font-bold uppercase tracking-widest text-indigo-400 mb-3">Our Expertise</h2>
@@ -159,15 +208,28 @@
         <p>&copy; 2026 King AI Freelance. All rights reserved. Built for international excellence.</p>
     </footer>
 
-    <!-- Interactive Chat Script -->
+    <!-- Interactive Generator & Chat Scripts -->
     <script>
+        function generateVideoContent(e) {
+            e.preventDefault();
+            const character = document.getElementById('charSelect').value;
+            const platform = document.getElementById('platformSelect').value;
+            const userPrompt = document.getElementById('promptInput').value;
+
+            document.getElementById('outputPlatform').textContent = platform;
+            document.getElementById('resPrompt').textContent = `[Style: 3D Pixar Cartoon, 4K, Vibrant Lighting] -> Featuring ${character}: ${userPrompt}`;
+            document.getElementById('resScript').textContent = `Scene 1: Introduction hook featuring expressive character reactions. Scene 2: Core storyline progression optimized for high audience retention. Scene 3: Call-to-action outro for social engagement.`;
+            
+            document.getElementById('outputContainer').classList.remove('hidden');
+            document.getElementById('outputContainer').scrollIntoView({ behavior: 'smooth' });
+        }
+
         function sendMessage(e) {
             e.preventDefault();
             const input = document.getElementById('chatInput');
             const chatBox = document.getElementById('chatBox');
             if(!input.value.trim()) return;
 
-            // Append user message
             const userMsg = document.createElement('div');
             userMsg.className = 'bg-indigo-950/40 p-3 rounded-xl border border-indigo-900/50 text-right';
             userMsg.innerHTML = `<span class="text-indigo-300 font-semibold">You:</span><p class="text-slate-300 mt-1">${input.value}</p>`;
@@ -176,7 +238,6 @@
             input.value = '';
             chatBox.scrollTop = chatBox.scrollHeight;
 
-            // Simulate automated response
             setTimeout(() => {
                 const reply = document.createElement('div');
                 reply.className = 'bg-slate-950 p-3 rounded-xl border border-slate-800';
