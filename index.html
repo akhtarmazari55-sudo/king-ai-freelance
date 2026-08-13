@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - King AI & Freelance Suite</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        body { background-color: #f7f7f7; color: #333; }
+        header { background: #fff; border-bottom: 1px solid #e5e7eb; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+        .logo { font-size: 1.5rem; font-weight: 900; color: #111; }
+        .logo span { color: #10b981; }
+        .dashboard-container { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; display: grid; grid-template-columns: 280px 1fr; gap: 2rem; }
+        @media(max-width: 768px) { .dashboard-container { grid-template-columns: 1fr; } }
+        
+        .sidebar { background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 1.5rem; height: fit-content; }
+        .sidebar-menu { list-style: none; }
+        .sidebar-menu li { margin-bottom: 1rem; }
+        .sidebar-menu a { text-decoration: none; color: #4b5563; font-weight: 600; display: block; padding: 0.5rem; border-radius: 6px; }
+        .sidebar-menu a:hover, .sidebar-menu a.active { background: #ecfdf5; color: #10b981; }
+
+        .main-content { display: flex; flex-direction: column; gap: 1.5rem; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+        .stat-card { background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 1.5rem; }
+        .stat-value { font-size: 1.5rem; font-weight: 700; color: #111; margin-top: 0.5rem; }
+        
+        .section-box { background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 1.5rem; }
+        .section-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 1rem; color: #111; }
+        
+        .order-row { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; border-bottom: 1px solid #f3f4f6; font-size: 0.9rem; }
+        .badge { background: #d1fae5; color: #065f46; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">king<span>.ai</span></div>
+        <div style="font-weight: 600; font-size: 0.95rem;">Seller & Buyer Command Center</div>
+    </header>
+
+    <div class="dashboard-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <ul class="sidebar-menu">
+                <li><a href="#" class="active">Dashboard Overview</a></li>
+                <li><a href="#">Active Orders (2)</a></li>
+                <li><a href="#">Messages & Chat</a></li>
+                <li><a href="#">My Gigs & Services</a></li>
+                <li><a href="#">Earnings & Wallet</a></li>
+                <li><a href="#">AI Security & Settings</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Dashboard View -->
+        <main class="main-content">
+            <!-- Stats Row -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div style="font-size: 0.85rem; color: #6b7280;">Net Income (This Month)</div>
+                    <div class="stat-value">PKR 348,200</div>
+                </div>
+                <div class="stat-card">
+                    <div style="font-size: 0.85rem; color: #6b7280;">Active Orders in Escrow</div>
+                    <div class="stat-value">2 Orders</div>
+                </div>
+                <div class="stat-card">
+                    <div style="font-size: 0.85rem; color: #6b7280;">Rating Score</div>
+                    <div class="stat-value">★ 4.98</div>
+                </div>
+            </div>
+
+            <!-- Active Orders Workspace -->
+            <div class="section-box">
+                <div class="section-title">Active Order Milestones</div>
+                
+                <div class="order-row">
+                    <div>
+                        <div style="font-weight: 600; color: #111;">AI Agent Integration Pipeline</div>
+                        <div style="color: #6b7280; font-size: 0.8rem;">Client: Global Tech Labs</div>
+                    </div>
+                    <span class="badge">In Progress</span>
+                </div>
+
+                <div class="order-row">
+                    <div>
+                        <div style="font-weight: 600; color: #111;">Full-Stack Web App Optimization</div>
+                        <div style="color: #6b7280; font-size: 0.8rem;">Client: Acme Corp</div>
+                    </div>
+                    <span class="badge">In Revision</span>
+                </div>
+            </div>
+        </main>
+    </div>
+
+</body>
+</html>
