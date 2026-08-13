@@ -3,94 +3,180 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - King AI & Freelance Suite</title>
+    <title>King AI Freelance | Next-Gen AI Solutions</title>
+    <!-- Tailwind CSS for modern international styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-        body { background-color: #f7f7f7; color: #333; }
-        header { background: #fff; border-bottom: 1px solid #e5e7eb; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
-        .logo { font-size: 1.5rem; font-weight: 900; color: #111; }
-        .logo span { color: #10b981; }
-        .dashboard-container { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; display: grid; grid-template-columns: 280px 1fr; gap: 2rem; }
-        @media(max-width: 768px) { .dashboard-container { grid-template-columns: 1fr; } }
-        
-        .sidebar { background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 1.5rem; height: fit-content; }
-        .sidebar-menu { list-style: none; }
-        .sidebar-menu li { margin-bottom: 1rem; }
-        .sidebar-menu a { text-decoration: none; color: #4b5563; font-weight: 600; display: block; padding: 0.5rem; border-radius: 6px; }
-        .sidebar-menu a:hover, .sidebar-menu a.active { background: #ecfdf5; color: #10b981; }
-
-        .main-content { display: flex; flex-direction: column; gap: 1.5rem; }
-        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
-        .stat-card { background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 1.5rem; }
-        .stat-value { font-size: 1.5rem; font-weight: 700; color: #111; margin-top: 0.5rem; }
-        
-        .section-box { background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 1.5rem; }
-        .section-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 1rem; color: #111; }
-        
-        .order-row { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; border-bottom: 1px solid #f3f4f6; font-size: 0.9rem; }
-        .badge { background: #d1fae5; color: #065f46; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600; }
+        body { font-family: 'Inter', sans-serif; }
     </style>
 </head>
-<body>
+<body class="bg-slate-950 text-slate-100 antialiased selection:bg-indigo-500 selection:text-white">
 
-    <header>
-        <div class="logo">king<span>.ai</span></div>
-        <div style="font-weight: 600; font-size: 0.95rem;">Seller & Buyer Command Center</div>
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="bg-gradient-to-tr from-indigo-500 to-violet-500 p-2.5 rounded-xl shadow-lg shadow-indigo-500/20">
+                    <i class="fa-solid fa-wand-magic-sparkles text-white text-lg"></i>
+                </div>
+                <span class="text-xl font-bold tracking-tight text-white">King AI <span class="text-indigo-400">Freelance</span></span>
+            </div>
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-300">
+                <a href="#services" class="hover:text-indigo-400 transition">Services</a>
+                <a href="#calculator" class="hover:text-indigo-400 transition">Estimate Project</a>
+                <a href="#about" class="hover:text-indigo-400 transition">About</a>
+                <a href="#contact" class="bg-indigo-600 hover:bg-indigo-500 text-white px-5 py-2.5 rounded-xl shadow-lg shadow-indigo-600/30 transition">Get Started</a>
+            </nav>
+        </div>
     </header>
 
-    <div class="dashboard-container">
-        <!-- Sidebar Navigation -->
-        <aside class="sidebar">
-            <ul class="sidebar-menu">
-                <li><a href="#" class="active">Dashboard Overview</a></li>
-                <li><a href="#">Active Orders (2)</a></li>
-                <li><a href="#">Messages & Chat</a></li>
-                <li><a href="#">My Gigs & Services</a></li>
-                <li><a href="#">Earnings & Wallet</a></li>
-                <li><a href="#">AI Security & Settings</a></li>
-            </ul>
-        </aside>
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden pt-24 pb-20 lg:pt-32 lg:pb-32">
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.15),rgba(255,255,255,0))]"></div>
+        <div class="max-w-7xl mx-auto px-6 relative z-10 text-center">
+            <span class="inline-flex items-center gap-1.5 py-1.5 px-4 rounded-full text-xs font-semibold bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 mb-6">
+                <span class="w-2 h-2 rounded-full bg-indigo-400 animate-pulse"></span> Available for Global Projects
+            </span>
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white max-w-4xl mx-auto leading-tight">
+                Supercharge Your Business with <span class="bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent">Advanced AI Solutions</span>
+            </h1>
+            <p class="mt-6 text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed">
+                We design custom AI workflows, automated content architectures, and high-performance applications built for the modern digital economy.
+            </p>
+            <div class="mt-10 flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#contact" class="bg-indigo-600 hover:bg-indigo-500 text-white font-medium px-8 py-4 rounded-xl shadow-xl shadow-indigo-600/25 transition text-center">Hire Our Experts</a>
+                <a href="#services" class="bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-200 font-medium px-8 py-4 rounded-xl transition text-center">Explore Services</a>
+            </div>
+        </div>
+    </section>
 
-        <!-- Main Dashboard View -->
-        <main class="main-content">
-            <!-- Stats Row -->
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div style="font-size: 0.85rem; color: #6b7280;">Net Income (This Month)</div>
-                    <div class="stat-value">PKR 348,200</div>
+    <!-- Services Grid -->
+    <section id="services" class="py-24 border-t border-slate-900 bg-slate-900/40">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-indigo-400 mb-3">Our Expertise</h2>
+                <p class="text-3xl sm:text-4xl font-bold tracking-tight text-white">Engineered for Maximum Impact</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-slate-900/80 border border-slate-800/80 p-8 rounded-2xl hover:border-indigo-500/50 transition group">
+                    <div class="w-12 h-12 bg-indigo-500/10 text-indigo-400 rounded-xl flex items-center justify-center text-xl mb-6 group-hover:bg-indigo-600 group-hover:text-white transition">
+                        <i class="fa-solid fa-brain"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-3">AI Workflow Automation</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Streamline your daily business operations with custom tailored intelligent automations and LLM integrations.</p>
                 </div>
-                <div class="stat-card">
-                    <div style="font-size: 0.85rem; color: #6b7280;">Active Orders in Escrow</div>
-                    <div class="stat-value">2 Orders</div>
+                <!-- Service 2 -->
+                <div class="bg-slate-900/80 border border-slate-800/80 p-8 rounded-2xl hover:border-indigo-500/50 transition group">
+                    <div class="w-12 h-12 bg-indigo-500/10 text-indigo-400 rounded-xl flex items-center justify-center text-xl mb-6 group-hover:bg-indigo-600 group-hover:text-white transition">
+                        <i class="fa-solid fa-clapperboard"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-3">Digital Media & Animations</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">High-engagement concept design, programmatic asset generation, and specialized script optimization frameworks.</p>
                 </div>
-                <div class="stat-card">
-                    <div style="font-size: 0.85rem; color: #6b7280;">Rating Score</div>
-                    <div class="stat-value">★ 4.98</div>
+                <!-- Service 3 -->
+                <div class="bg-slate-900/80 border border-slate-800/80 p-8 rounded-2xl hover:border-indigo-500/50 transition group">
+                    <div class="w-12 h-12 bg-indigo-500/10 text-indigo-400 rounded-xl flex items-center justify-center text-xl mb-6 group-hover:bg-indigo-600 group-hover:text-white transition">
+                        <i class="fa-solid fa-code"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-3">Full-Stack Web Development</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Scalable, high-performance web applications built with modern tools, secure deployment pipelines, and lightning-fast speed.</p>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <!-- Active Orders Workspace -->
-            <div class="section-box">
-                <div class="section-title">Active Order Milestones</div>
-                
-                <div class="order-row">
+    <!-- Interactive Project Scope Calculator -->
+    <section id="calculator" class="py-24 border-t border-slate-900">
+        <div class="max-w-3xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-indigo-400 mb-3">Interactive Estimator</h2>
+                <p class="text-3xl font-bold tracking-tight text-white">Calculate Your Project Scope</p>
+            </div>
+            <div class="bg-slate-900/90 border border-slate-800 p-8 rounded-3xl shadow-2xl">
+                <div class="space-y-6">
                     <div>
-                        <div style="font-weight: 600; color: #111;">AI Agent Integration Pipeline</div>
-                        <div style="color: #6b7280; font-size: 0.8rem;">Client: Global Tech Labs</div>
+                        <label class="block text-sm font-medium text-slate-300 mb-2">Select Primary Service</label>
+                        <select id="serviceType" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:border-indigo-500">
+                            <option value="500">AI Automation Architecture - $500</option>
+                            <option value="350">Digital Media & Content Systems - $350</option>
+                            <option value="800">Full-Stack Web Application - $800</option>
+                        </select>
                     </div>
-                    <span class="badge">In Progress</span>
-                </div>
-
-                <div class="order-row">
                     <div>
-                        <div style="font-weight: 600; color: #111;">Full-Stack Web App Optimization</div>
-                        <div style="color: #6b7280; font-size: 0.8rem;">Client: Acme Corp</div>
+                        <label class="block text-sm font-medium text-slate-300 mb-2">Delivery Speed</label>
+                        <select id="deliverySpeed" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:border-indigo-500">
+                            <option value="1">Standard Timeline</option>
+                            <option value="1.3">Express Delivery (+30%)</option>
+                        </select>
                     </div>
-                    <span class="badge">In Revision</span>
+                    <div class="pt-6 border-t border-slate-800 flex items-center justify-between">
+                        <div>
+                            <span class="text-sm text-slate-400">Estimated Investment</span>
+                            <div id="totalPrice" class="text-3xl font-extrabold text-indigo-400">$500</div>
+                        </div>
+                        <a href="#contact" class="bg-indigo-600 hover:bg-indigo-500 text-white font-medium px-6 py-3 rounded-xl transition">Request Quote</a>
+                    </div>
                 </div>
             </div>
-        </main>
-    </div>
+        </div>
+    </section>
 
+    <!-- Contact Form Section -->
+    <section id="contact" class="py-24 border-t border-slate-900 bg-slate-900/40">
+        <div class="max-w-2xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-indigo-400 mb-3">Get In Touch</h2>
+                <p class="text-3xl font-bold tracking-tight text-white">Let's Build Something Extraordinary</p>
+            </div>
+            <form onsubmit="handleContact(event)" class="space-y-6 bg-slate-900 border border-slate-800 p-8 rounded-3xl">
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-2">Your Name</label>
+                    <input type="text" required class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:border-indigo-500" placeholder="John Doe">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-2">Email Address</label>
+                    <input type="email" required class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:border-indigo-500" placeholder="john@example.com">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-2">Project Details</label>
+                    <textarea rows="4" required class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:border-indigo-500" placeholder="Describe your requirements..."></textarea>
+                </div>
+                <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-medium py-4 rounded-xl shadow-lg shadow-indigo-600/30 transition">Send Message</button>
+                <p id="successMsg" class="hidden text-center text-emerald-400 text-sm font-medium mt-4">Thank you! Your inquiry has been sent successfully.</p>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-900 py-12 text-center text-sm text-slate-500">
+        <p>&copy; 2026 King AI Freelance. All rights reserved. Built for international excellence.</p>
+    </footer>
+
+    <!-- Interactive Logic Script -->
+    <script>
+        const serviceSelect = document.getElementById('serviceType');
+        const speedSelect = document.getElementById('deliverySpeed');
+        const totalPriceEl = document.getElementById('totalPrice');
+
+        function updatePrice() {
+            const base = parseFloat(serviceSelect.value);
+            const multiplier = parseFloat(speedSelect.value);
+            const total = Math.round(base * multiplier);
+            totalPriceEl.textContent = `$${total}`;
+        }
+
+        serviceSelect.addEventListener('change', updatePrice);
+        speedSelect.addEventListener('change', updatePrice);
+
+        function handleContact(e) {
+            e.preventDefault();
+            document.getElementById('successMsg').classList.remove('hidden');
+            e.target.reset();
+        }
+    </script>
 </body>
 </html>
