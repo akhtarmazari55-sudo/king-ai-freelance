@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>King AI Freelance | Pro Studio (Persistent)</title>
+    <title>King AI Freelance | Pro Studio v3.0</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -12,24 +12,31 @@
 <body class="bg-slate-950 text-slate-100">
 
     <header class="border-b border-slate-800 p-6 flex justify-between items-center">
-        <h1 class="text-2xl font-bold">King AI <span class="text-indigo-500">Pro Studio</span></h1>
+        <h1 class="text-2xl font-bold">King AI <span class="text-indigo-500">Pro Studio v3.0</span></h1>
         <div class="space-x-4">
             <span id="saveStatus" class="text-xs text-slate-500 mr-4">All changes saved</span>
-            <button onclick="downloadDesign()" class="bg-indigo-600 px-6 py-2 rounded-xl text-sm hover:bg-indigo-500 transition">Export Project</button>
+            <button onclick="downloadDesign()" class="bg-indigo-600 px-6 py-2 rounded-xl text-sm hover:bg-indigo-500 transition">Export</button>
         </div>
     </header>
 
     <main class="max-w-7xl mx-auto p-6 grid grid-cols-1 md:grid-cols-4 gap-8">
+        <!-- Asset & Control Sidebar -->
         <div class="bg-slate-900 p-6 rounded-3xl border border-slate-800 space-y-6">
-            <h3 class="font-bold text-sm uppercase tracking-widest text-indigo-400">Asset Vault</h3>
-            <button onclick="addImage('https://cdn-icons-png.flaticon.com/128/1047/1047648.png')" class="w-full bg-slate-800 p-3 rounded-xl hover:bg-slate-700 text-left">🥕 Add Carrot</button>
-            <button onclick="addImage('https://cdn-icons-png.flaticon.com/128/2967/2967396.png')" class="w-full bg-slate-800 p-3 rounded-xl hover:bg-slate-700 text-left">🥒 Add Cucumber</button>
-            <button onclick="addText()" class="w-full bg-indigo-900/50 border border-indigo-500 p-3 rounded-xl hover:bg-indigo-800">Add Text Label</button>
-            <button onclick="clearCanvas()" class="w-full bg-red-900/20 border border-red-900 p-3 rounded-xl hover:bg-red-900 text-red-400">Clear Canvas</button>
+            <h3 class="font-bold text-xs uppercase tracking-widest text-indigo-400">Assets</h3>
+            <button onclick="addImage('https://cdn-icons-png.flaticon.com/128/1047/1047648.png')" class="w-full bg-slate-800 p-3 rounded-xl hover:bg-slate-700 text-left text-sm">🥕 Carrot</button>
+            <button onclick="addImage('https://cdn-icons-png.flaticon.com/128/2967/2967396.png')" class="w-full bg-slate-800 p-3 rounded-xl hover:bg-slate-700 text-left text-sm">🥒 Cucumber</button>
+            
+            <h3 class="font-bold text-xs uppercase tracking-widest text-indigo-400 pt-4">Layer Control</h3>
+            <div class="grid grid-cols-2 gap-2">
+                <button onclick="bringToFront()" class="bg-indigo-900/50 border border-indigo-500 p-3 rounded-xl text-xs hover:bg-indigo-800">Bring Front</button>
+                <button onclick="sendToBack()" class="bg-indigo-900/50 border border-indigo-500 p-3 rounded-xl text-xs hover:bg-indigo-800">Send Back</button>
+            </div>
+            <button onclick="deleteObject()" class="w-full bg-red-900/20 border border-red-900 p-3 rounded-xl hover:bg-red-900 text-red-400 text-xs">Delete Selected</button>
         </div>
 
-        <div class="md:col-span-3 bg-slate-900 border border-slate-800 rounded-3xl p-4 overflow-hidden">
-            <canvas id="mainCanvas" class="bg-white rounded-xl shadow-2xl"></canvas>
+        <!-- Canvas -->
+        <div class="md:col-span-3 bg-slate-900 border border-slate-800 rounded-3xl p-4 overflow-hidden shadow-2xl">
+            <canvas id="mainCanvas" class="bg-white rounded-xl"></canvas>
         </div>
     </main>
 
@@ -38,14 +45,10 @@
 
         // Load saved state
         const savedData = localStorage.getItem('canvasState');
-        if (savedData) {
-            canvas.loadFromJSON(savedData, canvas.renderAll.bind(canvas));
-        }
+        if (savedData) canvas.loadFromJSON(savedData, canvas.renderAll.bind(canvas));
 
-        // Auto-save logic
         function saveState() {
-            const json = JSON.stringify(canvas.toJSON());
-            localStorage.setItem('canvasState', json);
+            localStorage.setItem('canvasState', JSON.stringify(canvas.toJSON()));
             document.getElementById('saveStatus').textContent = 'All changes saved';
         }
 
@@ -61,15 +64,19 @@
             }, { crossOrigin: 'anonymous' });
         }
 
-        function addText() {
-            const text = new fabric.IText('New Graphic', { left: 100, top: 100, fontFamily: 'Arial', fill: '#1e1b4b' });
-            canvas.add(text);
-            saveState();
+        function bringToFront() {
+            const obj = canvas.getActiveObject();
+            if (obj) { canvas.bringToFront(obj); saveState(); }
         }
 
-        function clearCanvas() {
-            canvas.clear();
-            localStorage.removeItem('canvasState');
+        function sendToBack() {
+            const obj = canvas.getActiveObject();
+            if (obj) { canvas.sendToBack(obj); saveState(); }
+        }
+
+        function deleteObject() {
+            const obj = canvas.getActiveObject();
+            if (obj) { canvas.remove(obj); saveState(); }
         }
 
         function downloadDesign() {
