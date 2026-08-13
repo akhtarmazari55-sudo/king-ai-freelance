@@ -43,8 +43,15 @@
         <main class="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div class="bg-slate-900 p-6 rounded-3xl border border-slate-800 space-y-4">
                 <h3 class="text-xs uppercase text-indigo-400 font-bold tracking-wider">Project Library</h3>
-                <div id="projectList" class="space-y-2 max-h-96 overflow-y-auto pr-1"></div>
+                <div id="projectList" class="space-y-2 max-h-64 overflow-y-auto pr-1"></div>
                 <hr class="border-slate-800">
+                
+                <!-- Phone Upload Field -->
+                <div class="space-y-2">
+                    <label class="block text-xs uppercase text-indigo-400 font-bold">Upload from Phone</label>
+                    <input type="file" id="deviceFile" accept="image/*" onchange="handleImageUpload(event)" class="w-full text-xs text-slate-400 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-indigo-600 file:text-white hover:file:bg-indigo-500 cursor-pointer">
+                </div>
+
                 <button onclick="exportWatermarked()" class="w-full bg-slate-800 py-3 rounded-xl hover:bg-slate-700 text-sm transition font-medium">Download Preview</button>
             </div>
             <div id="canvas-wrapper" class="md:col-span-3 bg-slate-900 border border-slate-800 rounded-3xl p-4 shadow-2xl flex justify-center overflow-hidden">
@@ -54,7 +61,6 @@
     </div>
 
     <script>
-        // Responsive Scaling Canvas setup
         const wrapper = document.getElementById('canvas-wrapper');
         const containerWidth = Math.min(wrapper.clientWidth - 32, 800);
         const canvasHeight = 600;
@@ -66,13 +72,11 @@
 
         let projects = JSON.parse(localStorage.getItem('myProjects') || '{}');
 
-        // Robust Save Project with Error Handling and Loading State
         function saveProject() {
             const name = document.getElementById('projectName').value.trim() || 'Untitled Project';
             const saveBtn = document.getElementById('saveBtn');
             const saveText = document.getElementById('saveText');
 
-            // Show loading spinner state
             saveBtn.disabled = true;
             saveText.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Saving...';
 
@@ -84,11 +88,11 @@
                     saveText.textContent = 'Saved!';
                     setTimeout(() => { saveText.textContent = 'Save Project'; saveBtn.disabled = false; }, 1500);
                 } catch (error) {
-                    alert('Error: Browser storage is full. Please clear some space.');
+                    alert('Error: Browser storage is full.');
                     saveText.textContent = 'Save Project';
                     saveBtn.disabled = false;
                 }
-            }, 500); // Simulate network latency for visual feedback
+            }, 500);
         }
 
         function renderProjects() {
@@ -108,6 +112,23 @@
                 };
                 list.appendChild(btn);
             });
+        }
+
+        // Handle phone file gallery selection
+        function handleImageUpload(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function (f) {
+                fabric.Image.fromURL(f.target.result, function(img) {
+                    img.scaleToWidth(200);
+                    canvas.add(img);
+                    canvas.setActiveObject(img);
+                    canvas.renderAll();
+                }, { crossOrigin: 'anonymous' });
+            };
+            reader.readAsDataURL(file);
         }
 
         function exportWatermarked() {
