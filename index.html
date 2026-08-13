@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>King AI Freelance | Secure Auth Studio</title>
+    <title>King AI Freelance | Project Manager</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -11,29 +11,33 @@
 </head>
 <body class="bg-slate-950 text-slate-100">
 
-    <!-- Auth Wrapper -->
+    <!-- Auth Screen -->
     <div id="authScreen" class="fixed inset-0 bg-slate-950 z-50 flex items-center justify-center p-6">
         <div class="max-w-md w-full bg-slate-900 p-8 rounded-3xl border border-slate-800 text-center">
             <h2 class="text-2xl font-bold mb-6">King AI <span class="text-indigo-500">Access</span></h2>
-            <input type="text" placeholder="Workspace ID" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 mb-4 outline-none focus:border-indigo-500">
+            <input id="workspaceID" type="text" placeholder="Workspace ID" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 mb-4 outline-none focus:border-indigo-500">
             <button onclick="login()" class="w-full bg-indigo-600 py-3 rounded-xl hover:bg-indigo-500 transition">Enter Workspace</button>
         </div>
     </div>
 
-    <!-- Main Studio (Initially Hidden) -->
+    <!-- Main Studio -->
     <div id="studioScreen" class="hidden">
         <header class="border-b border-slate-800 p-6 flex justify-between items-center">
-            <h1 class="text-2xl font-bold">King AI <span class="text-indigo-500">Pro Studio v5.0</span></h1>
-            <button onclick="logout()" class="text-xs text-slate-500 hover:text-white">Sign Out</button>
+            <h1 class="text-xl font-bold">King AI <span class="text-indigo-500">Studio</span></h1>
+            <div class="flex items-center gap-4">
+                <input id="projectName" type="text" placeholder="Project Name" class="bg-slate-900 border border-slate-800 rounded-xl px-4 py-2 text-sm">
+                <button onclick="saveProject()" class="bg-emerald-600 px-4 py-2 rounded-xl text-xs hover:bg-emerald-500">Save Project</button>
+            </div>
         </header>
 
         <main class="max-w-7xl mx-auto p-6 grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div class="bg-slate-900 p-6 rounded-3xl border border-slate-800 space-y-6">
-                <h3 class="font-bold text-xs uppercase tracking-widest text-indigo-400">AI Asset Generator</h3>
-                <input id="aiPrompt" type="text" placeholder="e.g. Cartoon tomato..." class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:border-indigo-500 outline-none">
-                <button onclick="generateAIAsset()" class="w-full bg-violet-600 p-3 rounded-xl hover:bg-violet-500 text-sm font-medium transition">Generate & Drop</button>
+            <!-- Project Manager Sidebar -->
+            <div class="bg-slate-900 p-6 rounded-3xl border border-slate-800">
+                <h3 class="font-bold text-xs uppercase text-indigo-400 mb-4">Project Library</h3>
+                <div id="projectList" class="space-y-2"></div>
             </div>
 
+            <!-- Canvas -->
             <div class="md:col-span-3 bg-slate-900 border border-slate-800 rounded-3xl p-4 shadow-2xl">
                 <canvas id="mainCanvas" class="bg-white rounded-xl"></canvas>
             </div>
@@ -41,23 +45,35 @@
     </div>
 
     <script>
-        // Simple Auth Logic
+        const canvas = new fabric.Canvas('mainCanvas', { width: 800, height: 600 });
+        let projects = JSON.parse(localStorage.getItem('myProjects') || '{}');
+
         function login() {
             document.getElementById('authScreen').classList.add('hidden');
             document.getElementById('studioScreen').classList.remove('hidden');
-        }
-        function logout() {
-            location.reload();
+            renderProjectList();
         }
 
-        const canvas = new fabric.Canvas('mainCanvas', { width: 800, height: 600 });
+        function saveProject() {
+            const name = document.getElementById('projectName').value || 'Untitled';
+            projects[name] = canvas.toJSON();
+            localStorage.setItem('myProjects', JSON.stringify(projects));
+            renderProjectList();
+        }
 
-        function generateAIAsset() {
-            const mockAsset = 'https://cdn-icons-png.flaticon.com/128/3069/3069171.png';
-            fabric.Image.fromURL(mockAsset, function(img) {
-                img.scale(0.5);
-                canvas.add(img);
-            }, { crossOrigin: 'anonymous' });
+        function renderProjectList() {
+            const list = document.getElementById('projectList');
+            list.innerHTML = '';
+            Object.keys(projects).forEach(name => {
+                const btn = document.createElement('button');
+                btn.className = 'w-full text-left p-3 bg-slate-800 rounded-xl text-xs hover:bg-slate-700';
+                btn.textContent = name;
+                btn.onclick = () => {
+                    canvas.loadFromJSON(projects[name], canvas.renderAll.bind(canvas));
+                    document.getElementById('projectName').value = name;
+                };
+                list.appendChild(btn);
+            });
         }
     </script>
 </body>
