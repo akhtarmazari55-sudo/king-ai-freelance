@@ -3,71 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>King AI Freelance | Design Resource Library</title>
+    <title>King AI Freelance | Interactive Design Studio</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>body { font-family: 'Inter', sans-serif; }</style>
 </head>
 <body class="bg-slate-950 text-slate-100 antialiased">
 
-    <!-- Header / Navbar -->
-    <header class="sticky top-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800">
+    <!-- Navbar -->
+    <header class="border-b border-slate-800 bg-slate-950">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-                <div class="bg-gradient-to-tr from-indigo-500 to-violet-500 p-2.5 rounded-xl">
-                    <i class="fa-solid fa-wand-magic-sparkles text-white"></i>
-                </div>
-                <span class="text-xl font-bold text-white">King AI <span class="text-indigo-400">Freelance</span></span>
-            </div>
-            <nav class="hidden md:flex space-x-8 text-sm text-slate-300 font-medium">
-                <a href="#library" class="hover:text-indigo-400 transition">Design Library</a>
-                <a href="#studio" class="hover:text-indigo-400 transition">AI Studio</a>
-                <a href="#workspace" class="hover:text-indigo-400 transition">Workspace</a>
-            </nav>
+            <h1 class="text-xl font-bold text-white">King AI <span class="text-indigo-400">Studio</span></h1>
+            <button onclick="downloadCanvas()" class="bg-indigo-600 px-6 py-2 rounded-xl text-sm font-medium hover:bg-indigo-500 transition">Download Image</button>
         </div>
     </header>
 
-    <!-- Asset Library Section -->
-    <section id="library" class="py-24">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-xs font-bold uppercase tracking-widest text-indigo-400 mb-3">Resource Vault</h2>
-                <p class="text-4xl font-bold text-white">Pro Design Asset Library</p>
-            </div>
-
-            <!-- Category Tabs -->
-            <div class="flex flex-wrap justify-center gap-4 mb-12">
-                <button onclick="filterAssets('all')" class="bg-indigo-600 px-6 py-2 rounded-full text-sm font-medium transition">All Assets</button>
-                <button onclick="filterAssets('character')" class="bg-slate-900 border border-slate-800 px-6 py-2 rounded-full text-sm font-medium hover:border-indigo-500 transition">Characters</button>
-                <button onclick="filterAssets('template')" class="bg-slate-900 border border-slate-800 px-6 py-2 rounded-full text-sm font-medium hover:border-indigo-500 transition">Templates</button>
-            </div>
-
-            <!-- Grid -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                <!-- Sample Asset Item -->
-                <div class="bg-slate-900 border border-slate-800 p-4 rounded-2xl group hover:border-indigo-500/50 transition">
-                    <div class="h-40 bg-slate-950 rounded-xl mb-4 flex items-center justify-center text-indigo-500/50 text-4xl">
-                        <i class="fa-solid fa-carrot"></i>
-                    </div>
-                    <h4 class="text-sm font-semibold text-white">Okra Character Sprite</h4>
-                    <p class="text-xs text-slate-500 mt-1">Category: Character</p>
-                </div>
-                <div class="bg-slate-900 border border-slate-800 p-4 rounded-2xl group hover:border-indigo-500/50 transition">
-                    <div class="h-40 bg-slate-950 rounded-xl mb-4 flex items-center justify-center text-indigo-500/50 text-4xl">
-                        <i class="fa-solid fa-file-lines"></i>
-                    </div>
-                    <h4 class="text-sm font-semibold text-white">Script Layout v1</h4>
-                    <p class="text-xs text-slate-500 mt-1">Category: Template</p>
-                </div>
-            </div>
+    <!-- Main Workspace -->
+    <div class="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 lg:grid-cols-4 gap-8">
+        <!-- Asset Library Sidebar -->
+        <div class="col-span-1 space-y-4">
+            <h3 class="font-semibold text-slate-300 mb-4">Assets</h3>
+            <button onclick="addCharacter('Okra')" class="w-full bg-slate-900 border border-slate-800 p-4 rounded-xl text-left hover:border-indigo-500 transition">
+                <i class="fa-solid fa-carrot text-indigo-400 mr-2"></i> Add Okra
+            </button>
+            <button onclick="addCharacter('Cucumber')" class="w-full bg-slate-900 border border-slate-800 p-4 rounded-xl text-left hover:border-indigo-500 transition">
+                <i class="fa-solid fa-leaf text-indigo-400 mr-2"></i> Add Cucumber
+            </button>
         </div>
-    </section>
 
-    <!-- Script to simulate filtering -->
+        <!-- Canvas Workspace -->
+        <div class="col-span-3 bg-slate-900 border border-slate-800 rounded-3xl p-4 min-h-[500px] flex justify-center items-center">
+            <canvas id="c" width="600" height="400" class="border border-slate-700 bg-white rounded-xl"></canvas>
+        </div>
+    </div>
+
     <script>
-        function filterAssets(cat) {
-            alert('Filtering library by: ' + cat);
+        // Initialize Fabric Canvas
+        const canvas = new fabric.Canvas('c');
+
+        function addCharacter(name) {
+            // Simulate adding an asset (using a text placeholder for this demo)
+            const text = new fabric.Text(name, {
+                left: 100,
+                top: 100,
+                fontSize: 30,
+                fill: '#4f46e5'
+            });
+            canvas.add(text);
+        }
+
+        function downloadCanvas() {
+            const dataURL = canvas.toDataURL({ format: 'png' });
+            const link = document.createElement('a');
+            link.download = 'design.png';
+            link.href = dataURL;
+            link.click();
         }
     </script>
 </body>
